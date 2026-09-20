@@ -270,11 +270,10 @@ class DuoLauncherView(
 
         if (Build.VERSION.SDK_INT >= 31 && width > 0 && height > 0) {
             val blur = foldStrength(progress) * min(width, height) * profile.blurFactor
-            renderEffect = if (blur > 0.8f) {
-                RenderEffect.createBlurEffect(blur, blur, Shader.TileMode.CLAMP)
-            } else {
-                null
-            }
+            setRenderEffect(
+                if (blur > 0.8f) RenderEffect.createBlurEffect(blur, blur, Shader.TileMode.CLAMP)
+                else null
+            )
         }
         invalidate()
     }
